@@ -1,0 +1,15 @@
+services:
+  memory-server:
+    build: .
+    container_name: agent-memory
+    ports:
+      - "0.0.0.0:8765:8765"   # bind to all interfaces so Pis can reach it
+    volumes:
+      - memory_data:/app/chroma_data
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+
+volumes:
+  memory_data:
+    driver: local
