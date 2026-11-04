@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Memory Server — Shared vector memory for distributed Claude/OpenClaw agents.
-Runs on 192.0.2.99:8765, accessible by Raspberry Pis at 192.0.2.101-103.
+Listens on 0.0.0.0:8765 so agents elsewhere on the LAN can reach it.
 """
 
 import json
@@ -567,7 +567,7 @@ async def delete_memory(query: str) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Legacy SSE transport (kept for Raspberry Pi agents at 192.0.2.101-103)
+# Legacy SSE transport (kept for the Raspberry Pi agents)
 # ---------------------------------------------------------------------------
 sse = SseServerTransport("/messages/")
 
@@ -592,5 +592,5 @@ app = Starlette(
 if __name__ == "__main__":
     print(f"Memory Server starting on 0.0.0.0:{PORT}")
     print(f"  Local:   http://localhost:{PORT}/")
-    print(f"  Network: http://192.0.2.99:{PORT}/")
+    print(f"  Network: http://<this-machine-lan-ip>:{PORT}/")
     uvicorn.run(app, host="0.0.0.0", port=PORT, log_level="info")

@@ -6,8 +6,8 @@
 
 SSH_USER="${1:-pi}"
 SSH_PASS="${2:-}"
-MEMORY_URL="http://192.0.2.99:8765/sse"
-PI_IPS=("192.0.2.101" "192.0.2.102" "192.0.2.103")
+MEMORY_URL="${MEMORY_URL:-http://<memory-server-ip>:8765/sse}"
+read -r -a PI_IPS <<< "${PI_IPS:-<pi-ip-1> <pi-ip-2> <pi-ip-3>}"
 
 if [ -z "$SSH_PASS" ]; then
     echo "Usage: bash configure_pis.sh <user> <password>"
