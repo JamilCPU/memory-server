@@ -1,8 +1,8 @@
 #!/bin/bash
-# Run this on each Raspberry Pi (192.0.2.101-103) to configure memory MCP access.
+# Run this on each Raspberry Pi to configure memory MCP access.
 # Usage: bash pi_setup.sh
 
-MEMORY_SERVER="http://192.0.2.99:8765/sse"
+MEMORY_SERVER="${MEMORY_SERVER:-http://<memory-server-ip>:8765/sse}"
 SETTINGS_FILE="$HOME/.claude/settings.json"
 
 mkdir -p "$HOME/.claude"
